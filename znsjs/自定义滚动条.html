@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 400px;
+			height: 400px;
+			border: 1px solid #000;
+			overflow: hidden;
+			font-size: 40px;
+		}
+		.l,.r{
+			float: left;
+			height: 100%;
+			position: relative;
+		}
+		.l{
+			width: 385px;
+		}
+		.r{
+			width: 15px;
+			background-color: #ccc;
+		}
+		.bar{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 15px;
+			height: 60px;
+			background-color: blue;
+			border-radius: 4px;
+		}
+		.cont{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var box = document.querySelector('.box');
+			var l = document.querySelector('.l');
+			var r = document.querySelector('.r');
+			var bar = document.querySelector('.bar');
+			var cont = document.querySelector('.cont');
+			bar.onmousedown = function(ev){
+				var disY = ev.clientY - bar.offsetTop;
+				document.onmousemove = function(ev){
+					var t = ev.clientY - disY;
+					if(t<0){
+						t=0;
+					}
+					if(t>r.offsetHeight-bar.offsetHeight){
+						t=r.offsetHeight-bar.offsetHeight;
+					}
+					bar.style.top = t+'px';
+					var scale = t/(r.offsetHeight-bar.offsetHeight);
+					cont.style.top = scale*(l.offsetHeight-cont.offsetHeight)+'px';
+					ev.preventDefault();
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="l">
+			<div class="cont">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime distinctio deserunt error sit ratione perspiciatis nisi. Nisi minima recusandae dolore, assumenda doloremque porro sint dolores ad consectetur eligendi earum tempora.</div>
+		</div>
+		<div class="r">
+			<div class="bar"></div>
+		</div>
+	</div>
+</body>
+</html>

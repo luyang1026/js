@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script src="angular-route.js"></script>
+	<script>
+		var m = angular.module('app',['ngRoute']);
+		m.config(['$routeProvider',function($routeProvider){
+			$routeProvider.when('/aaa',{
+				templateUrl:'templates/t1.html',
+				controller:'t1'
+			});
+		}]);
+		m.controller('t1',['$scope',function($scope){
+			$scope.attr = [1,2,3];
+		}]);
+	</script>
+</head>
+<body ng-app="app">
+	<a href="#aaa">aaa</a>
+	<div ng-view></div>
+	{{}}
+</body>
+</html>

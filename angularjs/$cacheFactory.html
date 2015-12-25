@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('c1',['$cacheFactory','$log',function($cacheFactory,$log){
+				var cache = $cacheFactory('aaa',{capacity:2});//给对象一个id,capacity设置最多放多少。
+				cache.put('name','ly');//设置
+				var r = cache.info();
+				var r1 = cache.get('name');//获取
+				cache.remove('name')//删除
+				console.log(cache.info())
+
+				$log.error('error');
+				$log.warn('warn');
+				$log.log('log');
+				$log.info('info');
+
+			}])
+	</script>
+</head>
+<body ng-app="app" ng-controller="c1">
+	
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('all',['$anchorScroll','$scope','$location',function($anchorScroll,$scope,$location){
+				var hash;
+				$scope.change = function(id){
+					hash = id
+					$location.hash(id);	
+					if(hash == id){//第一次必然相等，如果不相等$anchorScroll会自动跳转，如果相等则手动调用这个服务。
+						$anchorScroll();
+					};
+				};
+			}]);
+	</script>
+	<style>
+		li{
+			height: 400px;
+			border: 1px solid #000;
+			width: 200px;
+			margin: 20px;
+		}
+		.list{
+			position: fixed;
+			top: 0;
+			right: 0;
+		}
+		.list li{
+			height: 1em;
+		}
+	</style>
+</head>
+<body ng-app="app" ng-controller="all">
+	<ul>
+		<li ng-repeat="k in [1,2,3]" ng-attr-id="miao{{k}}" ng-bind="k"></li>
+	</ul>
+	<ul class="list">
+		<li ng-repeat="k in [1,2,3]" ng-click="change('miao'+k)">{{k}}</li>
+	</ul>
+</body>
+</html>
