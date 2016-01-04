@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('c1',['$scope','$timeout',function($scope,$timeout){
+				$scope.person = {
+					name:'ly'
+				}
+			}])
+			.controller('c2',['$scope','$rootScope',function($scope,$rootScope){
+				
+				$scope.hello = function(){
+					$scope.person.age = 123;
+					$rootScope.person = {
+						name:'aa'
+					}
+				}
+			}])
+	</script>
+</head>
+<body ng-app="app">
+	<div ng-controller="c1">
+		<div ng-controller="c2" ng-click="hello()">{{person}}</div>
+	{{person}}
+	</div>
+	{{person}}
+</body>
+</html>

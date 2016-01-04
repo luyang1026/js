@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('c1',function($scope){
+				$scope.name = 'ly'
+			})
+	</script>
+	<style>
+		input.ng-valid{
+			border: 1px solid #0f0;
+		}
+		input.ng-invalid{
+			border: 1px solid #f00;
+		}
+		.ng-prestine{}
+		.ng-dirty{}
+	</style>
+</head>
+<body ng-controller="c1">
+	<form action="" name="form">
+		<label for="email" >your email</label>
+		<input type="email" name="email" placeholder="Email Address" required ng-model="email">
+		<input type="text" name="sex" placeholder="sex" ng-model="sex" required ng-minlength="4">
+		<input type="submit" value="submit">
+	</form>
+	<p>值的有效性{{form.sex.$valid}}</p>
+	<p>值是否无效{{form.sex.$invalid}}</p>
+	<p>值是否为初始值{{form.sex.$pristine}}</p>
+	<p>值是否为脏值{{form.sex.$dirty}}</p>
+	{{form.sex.$error}}那个验证条件没有满足即为true
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>parse</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('myapp',[])
+			.controller('parse',function($scope,$parse){
+				$scope.b = 'aaa';
+				var context = {
+					name:'ly'
+				}
+				$scope.$watch('a',function(n,o,s){
+					
+					$scope.parsed = $parse(n)(s);//这里s是一个context，n在s中就返回响应值,填b返回aaa
+					$scope.parsed = $parse(n)(context)//填name返回ly
+				})
+			})
+	</script>
+</head>
+<body>
+	<section ng-controller="parse">
+		<input type="text" ng-model="a">{{parsed}}
+		<br>{{b}}
+	</section>
+</body>
+</html>

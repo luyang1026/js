@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('c1',function($scope,$filter){
+				$scope.$watch('b',function(n){
+					$scope.b = $filter('uppercase')(n);//首先接受一个'规则'参数，再传待过滤字符串
+				});
+
+				$scope.time = new Date();
+				$scope.arr = ['abc','sssb','sss','cces'];
+				$scope.arr2 = [
+					{
+						'name':'ly',
+						'age':14
+					},
+					{
+						'name':'sun',
+						'age':32
+					}
+				];
+				$scope.fnFilter = function(str,str2){
+					console.log(str,str2)
+				}
+			})
+			.filter('rmb',function(){
+				return function(input){
+					return '￥'+input/100;
+				}
+			})
+	</script>
+</head>
+<body ng-controller="c1">
+	uppercase<input type="text" ng-model="a">{{a|uppercase}}<br>
+	number<input type="text" ng-model="c">{{c|number}} <br>
+	currency<input type="text" ng-model="d">{{d|currency}} <br>
+	<input type="text" ng-model="b"><br>
+	{{time}}<b style="font-size:30px">:</b>{{time|date:'.sss'}}
+	{{arr|filter:'!s'}} <br>
+	{{arr2|json}} <br>
+	{{'123123'|number}} <br>
+	一个自定义过滤器{{ 123422|rmb}}
+</html>

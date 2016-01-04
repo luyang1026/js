@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script src="a.js"></script>
+	<script>
+		angular.module('emailParser',[])
+			.config(function($interpolateProvider) {
+			  $interpolateProvider.startSymbol('//');
+			  $interpolateProvider.endSymbol('//');
+			})
+			.factory('EmailParser',['$interpolate',function($interpolate){
+				return {
+					parse:function(text,context){
+						return $interpolate(text)(context);
+					}
+				}
+			}])
+		angular.module('app',['emailParser'])
+			.controller('c1',function($scope,EmailParser){
+				$scope.$watch('body',function(contents){//当在文本中输入{{email}}则被替换为$scope.email的值
+						$scope.previewText = EmailParser.parse(contents,{
+							email:$scope.mail,
+							dear:$scope.dear})//$interpolate接受字符串返回一个函数，函数接收一个配置'篡改map'，返回修改后的字符串
+					
+				})
+			})
+	</script>
+</head>
+<body ng-controller="c1">
+	email:<input type="email" ng-model="mail">//mail//
+	dear:<input type="text" ng-model="dear">//dear//
+	<textarea name="" id="" cols="30" rows="10" ng-model="body"></textarea>
+	<pre>//previewText//</pre>
+</body>
+</html>

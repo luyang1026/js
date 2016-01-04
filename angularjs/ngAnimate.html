@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			background-color: #f00;
+			height: 100px;
+			margin: 4px;
+		}
+		.go.ng-enter{
+			background-color: blue;
+		}
+		.go.ng-enter-active{
+			background-color: pink;
+		}
+		.go.ng-leave{
+			background-color: yellow;
+		}
+		.go.ng-leave-active{
+			background-color: red;
+		}
+	</style>
+	<script src="angular.min.js"></script>
+	<script src="ngAnimate.js"></script>
+	<link rel="stylesheet" href="ngAnimate.css">
+	<script>
+		angular.module('app',['ngAnimate'])
+			.controller('c1',['$scope', function ($scope) {
+				$scope.ok = true;
+			}])
+	</script>
+</head>
+<body ng-app="app" ng-controller="c1">
+	<input type="checkbox" ng-model="ok">{{ok}}
+	<div ng-hide="ok" class="go" ng-repeat="i in [1,2,3,4,5]">ABC</div>
+</body>
+</html>

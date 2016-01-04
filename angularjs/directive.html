@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.directive('mine',function(){
+				return{
+					restrict:'EACM',//Element,Attribute,Class,comment,推荐用属性
+					replace:true,//替代原有标签
+					template:'<a href="./">{{totext}}</a>',
+					scope:{
+						totext:'@'
+					},
+					controller:function($scope){
+						console.log($scope.totext )
+					}
+				}
+			})
+			.controller('c1',function($scope){
+			})
+	</script>
+</head>
+<body>
+	<mine></mine>
+	<div mine totext="go"></div>
+	<div class="mine"></div>
+	<!-- directive:mine -->
+	<div ng-controller="c1" ng-init="greeting='hello'">{{greeting}}</div>
+	<!-- 指令里面可以写表达式 greeting只在其所在作用域生效-->
+	<div>{{greeting}}</div>{{greeting}}
+</body>
+</html>
