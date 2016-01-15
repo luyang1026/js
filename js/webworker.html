@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var worker1 = new Worker('worker.js');
+		var worker2 = new Worker('worker2.js');
+		worker1.onmessage = function(res){
+			console.log(res.data);
+		}
+		worker2.onmessage = function(res){
+			console.log(res.data);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

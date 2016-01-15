@@ -5,21 +5,31 @@
 	<title>Document</title>
 	<script src="angular.min.js"></script>
 	<script>
-		angular.module('a',[])
-			.controller('c1',['$location',function($location){
-				console.log($location.path());//   '/'
-				console.log($location.absUrl());// '地址栏url'
-				$location.search({age:12});
-				$location.path('aaa');
-				$location.hash('bbb');
-				console.log($location.url())//相对地址
-				console.log($location.host())//主机地址
-			}]);
+		// angular.module('a',[])
+		// 	.controller('c1',['$location',function(){
+		// 		console.log($location.path());//   '/'
+		// 		console.log($location.absUrl());// '地址栏url'
+		// 		// $location.search({age:12});
+		// 		// $location.path('aaa');
+		// 		// $location.hash('bbb');
+		// 		console.log($location.url())//相对地址
+		// 		console.log($location.host())//主机地址
+		// 	}]);
+		/**
+		* a Module
+		*
+		* Description
+		*/
+		angular.module('a', [])
+			.controller('c1', ['$scope','$location', function($scope,$location){
+				console.log($location.path())
+			}])
 	</script>
 	<style>	
 
 	</style>
 </head>
 <body ng-app="a" ng-controller="c1">
+	<a href="#a">a</a>
 </body>
 </html>

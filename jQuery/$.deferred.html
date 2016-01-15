@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery.js"></script>
+	<script>
+		var defer = $.Deferred();
+		function long(defer){
+			function yeah(){
+				console.log(1)
+				defer.resolve()
+			}
+			setTimeout(yeah,2000);
+			return defer.promise();
+		}
+		// long().done(function(){
+		// 	alert('a')
+		// })
+		$.when(long(defer)).done(function(){
+			alert(1)
+		});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

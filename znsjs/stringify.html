@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var json = {a:1,b:2};
+		function stringify(json){
+			var arr = [];
+			for(var name in json){
+				arr.push('"'+name+'":'+json[name])
+			}
+			return '{'+arr.join()+'}';
+		}
+		console.log(stringify(json))
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

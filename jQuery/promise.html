@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    div {
+      height: 50px; width: 50px;
+      float: left; margin-right: 10px;
+      display: none; background-color: #090;
+    }
+</style>
+  <script src="jquery.js"></script>
+  <script>
+    var div = $( "<div />" );
+ 
+div.promise().done(function( arg1 ) {
+  // will fire right away and alert "true"
+  console.log(div)
+  // alert( this === div && arg1 === div );
+});
+  </script>
+</head>
+<body>
+  <button>Go</button>
+  <p>Ready...</p>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+<script>
+$("button").bind( "click", function() {
+  $("p").append( "Started...");
+ 
+  $("div").each(function( i ) {
+    $( this ).fadeIn().fadeOut( 1000 * (i+1) );
+  });
+  console.log($('div').promise())
+  $( "div" ).promise().done(function() {
+    $( "p" ).append( " Finished! " );
+  });
+});
+</script>
+ 
+</body>
+</html>

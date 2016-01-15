@@ -7,7 +7,8 @@
 	<script>
 		angular.module('app',[])
 			.controller('c1',['$scope',function($scope){
-				$scope.$watch('a',function(newValue,oldValue){//一加载就会触发
+				$scope.b =1;
+				$scope.$watch('b',function(newValue,oldValue){//一加载就会触发
 					console.log(newValue,oldValue)
 				});
 			}])
@@ -15,5 +16,7 @@
 </head>
 <body ng-app="app" ng-controller="c1">
 	<input type="text" ng-model="a" ng-value="cc">{{a}}
+	<a ng-click="b=2">click</a>{{b}}
+	<a ng-click="b=3">click</a>{{b}}
 </body>
 </html>
