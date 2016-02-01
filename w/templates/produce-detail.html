@@ -1,0 +1,58 @@
+<ion-view view-title="全球喵喵" deactivate="true" hide-tabs="false" >
+	<ion-content>
+		<div id="details">
+			<div class="details-sk">
+				<img src="{{base.images[0].image}}" alt="">
+				<div class="p-box">
+					<p class="p2">{{base.name}}</p>
+					<p class="p3">
+						<span class="">￥{{base.sell_price}}</span>
+						<span class="s1">￥{{base.market_price}}</span>
+					</p>
+				</div>
+
+			</div>
+			<div class="details-fwcn">
+				<p class="p1">服务承诺</p>
+				<ul class="clearfix">
+					<li ng-repeat="service in base.pledge track by $index">
+						<div ng-if="service == 1">
+							<img src="css/images/ico/service_1.jpg" alt="">
+							<p>正品保障</p>
+						</div>
+						<div ng-if="service == 2">
+							<img src="css/images/ico/service_2.jpg" alt="">
+							<p>极速达</p>
+						</div>
+						<div ng-if="service == 3">
+							<img src="css/images/ico/service_3.jpg" alt="">
+							<p>15天退换货</p>
+						</div>
+						<div ng-if="service == 4">
+							<img src="css/images/ico/service_4.jpg" alt="">
+							<p>厂家直供</p>
+						</div>
+						<div ng-if="service == 5">
+							<img src="css/images/ico/service_5.jpg" alt="">
+							<p>0关税</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="details-spxq">
+				<p class="p1">商品详情</p>
+				<div ng-bind-html="details.produce_detail"></div>
+			</div>
+		</div>
+	</ion-content>
+	<div class="details-foot clearfix">
+		<a href="app/cart" class="fl gwc-i">
+			<i></i>
+			<span>购物车</span>
+			<b ng-bind="num || 0"></b>
+
+		</a>
+		<a class="fl t2" href="javascript:;" ng-click="addToCart()">加入购物车</a>
+		<a class="fl t3" href="app/order/info/{{produce_id}}/2">立即购买</a>
+	</div>
+</ion-view>

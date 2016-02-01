@@ -1,0 +1,18 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<div class="ly1">
+			<header>
+				<img src="css/images/p1_header.png" alt="">
+			</header>
+			<section>
+				<img src="css/images/p1_envelope.png" alt="">
+			</section>
+			<p class="instruction">填写手机号领取红包</p>
+			<form class="toCoupons" ng-submit="submit(data)" name="dataForm" novalidate>
+				<input type="text" class="tel" placeholder="请输入您的手机号码" ng-model="data.mobile" required name="mobile" ng-init="data.mobile = ''">
+				<input type="submit" class="submit" value="点击领取">
+			</form>
+		</div>
+	</ion-content>
+
+</ion-view>

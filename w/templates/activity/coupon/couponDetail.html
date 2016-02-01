@@ -1,0 +1,84 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<div class="ly2">
+			<header>
+				<img src="css/images/p2_header.png" alt="">
+			</header>
+			<section class="coupons">
+				<ul class="coupons-list">
+					<li ng-repeat="coupon in coupons"><p class="l-part">￥<span class="price">{{coupon.coupon_price/100}}</span></p></li>
+					<li></li>
+				</ul>
+			</section>
+			<section class="sec-notice">
+				<img src="css/images/p2_banner.png" alt="">
+				<div class="holder">
+					<span class="notice">优惠券已放至您的账户,在线支付即可使用</span>
+				</div>
+			</section>
+			<section>
+				<img src="css/images/p2_advertise.png" alt="">
+			</section>
+			<section class="goods">
+				<div class="a">
+					<h3>橄榄油专区<span class="square"></span></h3>
+					<ul class="good-list clearfix">
+						<li class="fl" ng-repeat="produce in produceList1">
+							<div class="img-holder">
+								<a ng-href="app/produce/{{produce.produce_id}}"><img ng-src="{{produce.images}}" alt=""></a>
+							</div>
+							<p class="des">{{produce.name}}</p>
+							<div class="holder">
+								<p>劲爆价:<span class="red">￥{{produce.sell_price/100}}</span></p>
+								<p>专柜价:<span class="slashed">￥{{produce.market_price/100}}</span></p>
+							</div>
+							<a ng-href="app/produce/{{produce.produce_id}}"><div class="c_button">立即抢购</div></a>
+						</li>
+					</ul>
+					<h3>彩妆专区<span class="square" style="background:orange"></span></h3>
+					<ul class="good-list clearfix">
+						<li class="fl" ng-repeat="produce in produceList2">
+							<div class="img-holder">
+								<a ng-href="app/produce/{{produce.produce_id}}"><img ng-src="{{produce.images}}" alt=""></a>
+							</div>
+							<p class="des">{{produce.name}}</p>
+							<div class="holder">
+								<p>劲爆价:<span class="red">￥{{produce.sell_price/100}}</span></p>
+								<p>专柜价:<span class="slashed">￥{{produce.market_price/100}}</span></p>
+							</div>
+							<a ng-href="app/produce/{{produce.produce_id}}"><div class="c_button">立即抢购</div></a>
+						</li>
+					</ul>					
+					<h3>护肤<span class="square" style="background:pink"></span></h3>
+					<ul class="good-list clearfix">
+						<li class="fl" ng-repeat="produce in produceList3">
+							<div class="img-holder">
+								<a ng-href="app/produce/{{produce.produce_id}}"><img ng-src="{{produce.images}}" alt=""></a>
+							</div>
+							<p class="des">{{produce.name}}</p>
+							<div class="holder">
+								<p>劲爆价:<span class="red">￥{{produce.sell_price/100}}</span></p>
+								<p>专柜价:<span class="slashed">￥{{produce.market_price/100}}</span></p>
+							</div>
+							<a ng-href="app/produce/{{produce.produce_id}}"><div class="c_button">立即抢购</div></a>
+						</li>
+					</ul>					
+					<h3>个护<span class="square" style="background:violet"></span></h3>
+					<ul class="good-list clearfix">
+						<li class="fl" ng-repeat="produce in produceList4">
+							<div class="img-holder">
+								<a ng-href="app/produce/{{produce.produce_id}}"><img ng-src="{{produce.images}}" alt=""></a>
+							</div>
+							<p class="des">{{produce.name}}</p>
+							<div class="holder">
+								<p>劲爆价:<span class="red">￥{{produce.sell_price/100}}</span></p>
+								<p>专柜价:<span class="slashed">￥{{produce.market_price/100}}</span></p>
+							</div>
+							<a ng-href="app/produce/{{produce.produce_id}}"><div class="c_button">立即抢购</div></a>
+						</li>
+					</ul>			
+				</div>
+			</section>
+		</div>
+	</ion-content>
+</ion-view>

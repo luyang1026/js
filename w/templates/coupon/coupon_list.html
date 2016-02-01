@@ -1,0 +1,45 @@
+﻿<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='' cache-view="">
+            <div class="h-coupon clearfix">
+                <div class="fl"><button ng-class="{'h-on':tab==1}" ng-model="tab" ng-click="tab=1">未使用</button></div>
+                <div class="fl"><button ng-model="tab" ng-click="tab=2" ng-class="{'h-on':tab==2}">已过期</button></div>
+            </div>
+    <ion-content>
+        <!-- 优惠券-->
+        <div class="h-page">
+            <div style="background: #f5f5f5;overflow: hidden;">
+                <ul class="h-coupon-list">
+                	<li ng-repeat="coupon in coupons"  ng-class="{'h-overdue':coupon.coupon_status==3}">
+                        <div class="h-coupon-list-t"></div>
+                        <div>
+                            <div class="clearfix h-coupon-list-m">
+                                <div class="fl">
+                                    ¥ <span>{{coupon.coupon_price/100}}</span>
+                                </div>
+                                <div class="fr">
+                                    <p class="clearfix">
+                                        <span class="fl h-coupon-color">{{coupon.name}}</span>
+                                        <span class="fr" ng-if="coupon.coupon_status==1">未使用</span>
+                                        <span class="fr" ng-if="coupon.coupon_status==2">未开始</span>
+                                        <span class="fr" ng-if="coupon.coupon_status==3">已过期</span>
+                                    </p>
+                                    <p ng-class="{active:coupon.expanded}" ng-click="coupon.expanded = !coupon.expanded">{{coupon.description}}</p>
+                                    <p><span ng-init="coupon.expanded=true" ng-class="{'top-jt':!coupon.expanded}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>有效期:{{coupon.coupon_start_time}}-{{coupon.coupon_end_time}}</div>
+                    </li>
+                </ul>
+            </div>
+            <!--无优惠券状态-->
+            <div class="h-coupon-wky" ng-if="!coupons.length">
+                <div></div>
+                <p>暂无优惠券</p>
+            </div>
+        </div>
+
+
+        <ion-infinite-scroll immediate-check="false" on-infinite="loadMore()" distance="1%" ng-if="hasMoreData">
+        </ion-infinite-scroll> 
+    </ion-content>
+</ion-view>

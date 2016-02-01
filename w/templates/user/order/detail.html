@@ -1,0 +1,67 @@
+<ion-view view-title="订单详情" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<div class="h-page">
+			<div class="h-od-box clearfix ">
+				<div class="fl">
+					<p>订单号:<span>{{details.order_sn}}</span></p>
+					<p>下单时间:<span>{{details.create_time*1000|date:'y-M-d'}}</span></p>
+                    <p ng-if="details.status == 801 ||details.status == 802 || details.status == 803">快递公司:<span>{{details.express_info.express_com}}</span></p>
+                    <p ng-if="details.status == 801 ||details.status == 802 || details.status == 803">快递单号:<span>{{details.express_info.express_sn}}</span></p>
+                    <p ng-if="(details.status == 801 || etails.status == 802 || details.status == 803) && details.is_verify == 1">清关认证:<span class="h-rz-color" ng-if="details.card_no == ''">未认证</span><span class="h-rz-color" ng-if="details.card_no">已认证</span></p>
+				</div>
+				<div class="fr">
+					<span class="fr" ng-if="details.status == 800">待付款</span>
+					<span class="fr" ng-if="details.status == 801">待发货</span>
+					<span class="fr" ng-if="details.status == 802">待收货</span>
+					<span class="fr" ng-if="details.status == 803">已完成</span>
+					<span class="fr" ng-if="details.status == 804">已关闭</span>
+					<i class="fr"></i>
+				</div>
+				<a href="#">
+					<div class="atAut" ng-if="details.status == 801" ng-click="clearanceVerify()">立即认证</div>
+				</a>
+			</div>
+			<div class="h-order-address clearfix">
+				<div class="fl">
+					<i></i>
+				</div>
+				<div class="fl">
+					<p>收件人:<span>{{details.name}} {{details.mobile}}</span></p>
+					<p>收货地址:<span>{{details.address}}</span></p>
+				</div>
+			</div>
+			<div class="h-qr-box h-od-box-tow">
+				<ul id="main-gwc">
+					<li class="clearfix" ng-repeat="detail in details.details">
+						<div class="fl main-gwc-r h-gwc-new">
+							<div class="clearfix main-gwc-r-t">
+								<img src="{{detail.main_image}}" alt="" class="fl"width="90" height="90">
+								<div class="fr main-gwc-r-b">
+									<p>{{detail.name}}</p>
+									<p class="clearfix p2"><span class="fl ss">￥{{detail.price / 100}}</span><span class="fr">x{{detail.number}}</span></p>
+									<p ng-if="details.status == 801 || details.status == 802 || (details.status == 803 && details.is_return == 0) || (details.status == 804 && detail.status != 0)">
+										<a href="/app/user/order/service/apply/{{detail.orders_detail_id}}/{{details.status}}/{{detail.price * detail.number}}" class="abtn" ng-if="detail.status == 0">申请售后</a>
+										<a href="/app/user/order/service/return_check" class="abtn" ng-if="detail.status == 600">等待审核</a>
+										<a href="/app/user/order/service/return/{{detail.orders_detail_id}}" class="abtn" ng-if="detail.status == 601 && detail.express_status == 0">请退货</a>
+										<a href="/app/user/order/service/return_check" class="abtn" ng-if="detail.status == 602 || (detail.status == 601 && detail.express_status == 1)">退货中</a>
+										<a href="/app/user/order/service/return_check" class="abtn" ng-if="detail.status == 700 || detail.status == 701">退款中</a>
+										<a href="/app/user/order/service/refund/{{detail.orders_detail_id}}/{{detail.status}}" class="abtn" ng-if="detail.status == 702 || detail.status == 603">退款完成</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="h-order-det">
+					<p>快递费:<span>￥{{details.express_fee / 100}}</span></p>
+					<p ng-if="details.reduce">商品优惠:<span>-¥{{details.reduce/100}}</span></p>
+					<p>合计:<span>￥{{(details.pay_money-details.reduce)/ 100}}</span></p>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<div id="shdz-footer-detail">
+		<input ng-if="details.status == 800" ng-click="pay()" type="button" value="付款">
+		<input ng-if="details.status == 802" ng-click="receive()" type="button" value="确认收货">
+	</div>
+</ion-view>

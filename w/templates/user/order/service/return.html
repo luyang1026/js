@@ -1,0 +1,31 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<div class="h-page">
+            <div class="h-R-goods">
+                <img src="css/images/yituihuo.png" alt=""width="100%"height="116">
+            </div>
+            <form name="expressForm">
+            <div class="h-app-sale">
+                <p class="clearfix h-app-sale-p">
+                    <span class="fl">快递公司</span>
+                    <select mobi-select="true" name="express_com" ng-model="expressData.express_com">
+                    	<option vlaue="0">请选择快递公司</option>
+                    	<option value="{{e.express_com}}" ng-repeat="e in express">{{e.express_name}}</option>
+                    </select>
+                </p>
+                <p class="clearfix h-app-sale-p">
+                    <span class="fl">快递单号</span>
+                    <a href="#" class="fl">
+                        <input type="text" placeholder="请添加快递单号" name="express_sn" ng-model="expressData.express_sn" >
+                    </a>
+                </p>
+
+            </div>
+
+            <div id="shdz-footer-detail">
+                <input type="button" ng-click="submit()" value="提交">
+            </div>
+            </form>
+        </div>
+	</ion-content>
+</ion-view>

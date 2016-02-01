@@ -1,0 +1,39 @@
+<ion-view view-title="全球喵喵" hide-tabs="false" deactivate='true' cache-view="false">
+	<ion-content>
+
+			<div class="h-bj">
+			<a href="app/user/address/add">
+				<div class="h-address">
+					<p class="clearfix">
+						<span class="c-re"><b>+</b>&nbsp添加新地址</span>
+					</p>
+				</div>
+				</a>
+				<ul class="h-address-list">
+					<li ng-repeat="address in addressList">
+						<div class="h-mra">
+							<p class="p-one">{{address.name}} <span class="s-left">{{address.mobile}}</span></p>
+							<p class="p-one">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</p>
+							<div class="clearfix h-mra-s-box">
+								<div class="fl" ng-click="updateAddress(address.user_addrid,address.is_default)">
+									<span class="h-mra-s-border fl"  ng-class="{1:'active',0:''}[address.is_default]"></span><span class="fl h-mra-s-border-r">设为默认</span>
+								</div>
+								<div class="fr h-top-img">
+									<a class="fl h-mra-s-box-qrg" href="#" ng-click="edit(address.user_addrid)">
+										<img src="../css/images/modify.png" alt="" width="20" class="fl">
+										<span class="fl">&nbsp编辑</span>
+									</a>
+									<a class="fl h-mra-s-box-qrg">
+
+										<img src="../css/images/shanchu.png" alt="" width="20" class="fl">
+										<span class="fl" ng-click="deleteaddress(address.user_addrid)">&nbsp删除</span>
+									</a>
+								</div>
+										
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+	</ion-content>
+</ion-view>

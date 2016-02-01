@@ -1,0 +1,21 @@
+<ion-view view-title="活动展示" deactivate='true' hide-tabs="false">
+	<ion-content >
+		<div class="activiey1" id="wares-list">
+			<div class="page">
+			    <div class="sp-list-box">
+			        <ul class="sp-list clearfix">
+			            <li ng-repeat="produce in produceList">
+			                <div class="produce">
+								<a ng-href="app/produce/{{produce.produce_id}}">
+									<img ng-src="{{produce.images}}" alt="">
+								</a>
+			                    <p ng-bind="produce.name" class="list-font"></p>
+			                    <p class="h-color">￥{{produce.sell_price/100}}</p>
+			                </div>
+			            </li>
+					</ul>
+			    </div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

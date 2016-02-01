@@ -1,0 +1,35 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<!--订单支付<a href="#" ng-click="pay()">立即支付</a>-->
+		<div class="h-page" ng-if="orders.is_split">
+			<p class="h-order-cf">为了避免您多付关税，您的订单将被拆分。</p>
+			<div class="h-order-cf-main">
+				<ul class="h-orders-box">
+					<li ng-repeat="suborder in orders.sub_orders" ng-click="pick(suborder)">
+						<p class="h-order-number">订单号:<span>{{suborder.order_sn}}</span></p>
+						<div class="h-order-cf-m clearfix">
+							<div class="fl h-order-left"><span ng-class="{on:suborder.selected}"></span></div>
+							<div class="fr h-order-right">
+								<div class="clearfix">
+									<img ng-repeat="img in suborder.details" ng-src="{{img.main_image}}" alt="" width="66">
+								</div>
+								<p class="h-order-money">商品金额:
+									<span>￥{{suborder.pay_money/100}}</span>
+									<span>&#40优惠¥<b>{{suborder.reduce / 100}}</b>&#41</span>
+								</p>
+							</div>
+						</div>
+						<div class="h-pos-top">拆分订单如下</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</ion-content>
+	<a href="#" class="wxpay" ng-class="{on:!orders.is_split}" ng-click="pay()">
+		<p>
+			<b class="fl"></b>
+			<span class="fl">微信支付</span>
+		</p>
+		<i></i>
+	</a>
+</ion-view>

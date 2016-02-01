@@ -1,0 +1,70 @@
+<ion-view view-title="我的订单" hide-tabs="false" deactivate='true' cache-view="false">
+	<ul class="h-order-t clearfix">
+		<li >
+			<a ng-click="tab=0" ng-class="tab == 0 ? 'h-active' : ''">全部</a>
+		</li>
+		<li>
+			<a ng-click="tab=1" ng-class="tab == 1 ? 'h-active' : ''">待付款</a>
+		</li>
+		<li>
+			<a ng-click="tab=2" ng-class="tab == 2 ? 'h-active' : ''">待收货</a>
+		</li>
+		<li>
+			<a ng-click="tab=3" ng-class="tab == 3 ? 'h-active' : ''">已完成</a>
+		</li>
+	</ul>
+	<ion-content>
+		<div class="h-page">
+
+			<div style="width:100%;margin:2 auto;margin:50px 0;background:#f5f5f5">
+				<div class="h-qr-box h-qr-mar" ng-repeat="order in orders">
+					<a ng-href="/app/user/order/detail/{{order.oid}}">
+						<div class="h-order-num">
+							订单号:<span>{{order.order_sn}}</span>
+							<span ng-if="order.is_split">订单拆分</span>
+							<p ng-if="order.status == 800">待付款</p>
+							<p ng-if="order.status == 801">待发货</p>
+							<p ng-if="order.status == 802">待收货</p>
+							<p ng-if="order.status == 803">已完成</p>
+							<p ng-if="order.status == 804">已关闭</p>
+						</div>
+						<ul class="main-gwc">
+							<li class="clearfix" ng-repeat="detail in order.details">
+								<div class="fl main-gwc-r h-gwc-new">
+									<div class="clearfix main-gwc-r-t">
+										<img src="{{detail.main_image}}" alt="{{detail.name}}" class="fl"width="90" height="90">
+										<div class="fr main-gwc-r-b">
+											<p>{{detail.name}}</p>
+											<p class="clearfix p2"><span class="fl ss">￥{{detail.price / 100}}</span><span class="fr">x{{detail.number}}</span></p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</a>
+					<div class="h-total">
+						<p ng-if="order.reduce">&#40优惠:<span class="">-¥{{order.reduce/100}}</span>&#41</p>
+						<p>合计:<span class="num">￥{{(order.pay_money - order.reduce)  / 100}}</span></p>
+						<p ng-if="order.status==802"><a href="javascript:;" ng-click="receive({{order.oids}})">确认收货</a></p>
+						<!-- <p ng-if="order.status==803"><a href="javascript:;">已完成</a></p> -->
+						<p ng-if="order.status==804"><a href="javascript:;">交易关闭</a></p>
+						<p ng-if="order.status==800"><a href="javascript:;" ng-click="pay('{{order.parentoid}}')">付款</a></p>
+
+					</div>
+				</div>
+			</div>
+			<ion-infinite-scroll immediate-check="false" on-infinite="loadMore()" distance="1%" ng-if="hasMoreData">
+	        </ion-infinite-scroll>
+		</div>
+	</ion-content>
+</ion-view>
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">My Modal title</h1>
+    </ion-header-bar>
+    <ion-content>
+      Hello!
+    </ion-content>
+  </ion-modal-view>
+</script>
