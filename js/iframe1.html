@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{background-color: blue;}
+	</style>
+	<script>
+		window.onload = function(){
+			console.log('loaded')
+			console.log(window.parent)
+			console.log(location.origin)
+			window.addEventListener('message', function(ev){
+				console.log(ev.origin)
+			})
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

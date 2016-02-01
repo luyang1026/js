@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('c1',function($scope){
+				$scope.submit = function(){
+					alert(1)
+				}
+			})
+	</script>
+</head>
+<body ng-controller="c1">
+	<form name="myform" id="myform" ng-submit="submit()">
+		sex <input type="text">
+	</form>
+
+</body>
+</html>

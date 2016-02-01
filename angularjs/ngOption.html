@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('app',[])
+			.run(function($rootScope){
+				$rootScope.colors = 
+				[
+			      {name:'black', shade:'dark'},
+			      {name:'white', shade:'light'},
+			      {name:'red', shade:'dark'},
+			      {name:'blue', shade:'dark'},
+			      {name:'yellow', shade:'light'}
+			    ];
+			    $rootScope.mm = {
+			    	north:'beibei',
+			    	east:'dongdong',
+			    	west:'xixi',
+			    	south:'nannan'
+			    };
+			    $rootScope.arr = [1,2,3,4];
+			    $rootScope.mycolor = $rootScope.colors[2]
+			})
+	</script>
+</head>
+<body>
+	<ul>
+		<li ng-repeat="color in colors">
+			{{color.name}}
+			<a href="" ng-click="colors.splice($index,1)">X</a>
+		</li>
+	</ul>
+	<div ng-style="{background:mycolor.name}">aaa</div>
+	<select ng-model="mycolor" ng-options="color.name for color in colors"></select>{{mycolor}}
+	<select ng-model="key" ng-options="key for (key,value) in mm">
+	</select>
+</body>
+</html>
