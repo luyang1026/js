@@ -5,35 +5,34 @@
 	<title>Document</title>
 	<script src="angular.min.js"></script>
 	<script>
-		var m = angular.module('app',[]).
+		var m = angular.module('app',[])
+			.run(function($rootScope){
+				// $rootScope.count = 1
+			})
 			.controller('g', function($scope){
-				$scope.	
+				$scope.aaa=1;
+				$scope.$on('a',function(a){
+					console.log(a.currentScope.aaa)
+				})
 			})
 			.controller('p', function($scope){
-					
+				$scope.a = function(){
+					$scope.$emit('a')
+				}
 			})
 			.controller('s', function($scope){
 					
 			});
-			var map = [
-				{
-					conName:'',
-					conFn:function(){
-
-					},
-					Sname:'',
-					
-				}
-			]
-			function(m,c){
-				m.controller()
-			}
 	</script>
 </head>
 <body>
 	<div ng-controller="g">
-		<div ng-controller="p">
-			<div ng-controller="s"></div>
+		{{count}}aa
+		<div ng-controller="p" ng-click="a()" ng-init="count=1">
+			{{count}}aa
+			<div ng-controller="s">
+				{{count}}aa
+			</div>
 		</div>
 	</div>
 </body>

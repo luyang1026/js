@@ -1,0 +1,28 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='' cache-view="">
+
+    <ion-content>
+        <!-- 优惠券-->
+        <div class="h-coupon-list2-box">
+            <ul class="h-coupon-list2">
+                <li class="clearfix" ng-repeat="coupon in coupons" ng-click="selectCoupon(coupon.coupon_price,coupon.user_coupon_id,coupon.coupon_limit);coupon.selected=true">
+                    <div class="fl cou-left">
+                        <span ng-class="{on:couponSelectedId==coupon.user_coupon_id}"></span>
+                    </div>
+                    <div class="fr cou-right">
+                        <div class="h-coupon-top"></div>
+                        <div class="h-coupon-list2-mt">
+                            <div class="fl">
+                                ¥<span>{{coupon.coupon_price/100}}</span>
+                            </div>
+                            <div class="fl">
+                                <p>{{coupon.coupon_type==2?'满￥'+coupon.coupon_limit/100:'全场通用'}}</p>
+                                <p>有效期至:{{coupon.coupon_end_time}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+    <a href="#" class="h-no-coupon" ng-click="delCoupon()">不使用优惠券</a>
+</ion-view>

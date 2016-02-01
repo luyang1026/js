@@ -1,0 +1,61 @@
+<ion-view view-title="购物车" deactivate='false' hide-tabs="false" cache-view="false">
+	<ion-content style="bottom:100px;" >
+		<div class="h-bj">
+			<ul id="main-gwc">
+				<li class="clearfix h-main-gwc-li" ng-if="cartLists" ng-repeat="cartList in cartLists">
+					<div class="h-gwc-del"><a href="#" ng-click="delCart(cartList.produce_id)"><img src="../css/images/ico/ico-sr.png" width="15"> 删除</a></div>
+					<div class="clearfix h-border-box">
+						<div class="fl main-gwc-l"  ng-click="checkProduce(cartList.produce_id,$index)">
+							<span class="ospan" ng-class="{true:'active',false:''}[cartList.isActive]"></span>
+						</div>
+						<div class="fl main-gwc-r main-gwc-none">
+							<div class="clearfix main-gwc-r-t">
+								<img ng-src="{{cartList.main_image}}" alt="" class="fl"width="90" height="90">
+								<div class="fr main-gwc-r-b">
+									<p>{{cartList.name}}</p>
+									<p class="clearfix p2"><span class="fl ss">￥{{cartList.price}}</span><span class="fr">x{{cartList.num}}</span></p>
+									<div class="count count2">
+										<a href="javascript:;" class="a2" ng-click="reduce(cartList.produce_id,cartList.num)">-</a>
+										<a href="javascript:;" class="a3" ng-click="plus(cartList.produce_id)">+</a>
+										<span class="plus" ng-bind="cartList.num || 1"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+
+
+			</ul>
+
+				<div class="h-cart-none h-cart-none-two" ng-hide="hasCartLists">
+					<img src="css/images/car_kong@3x_03.png" alt="" width="100">
+					<p>暂无数据</p>
+				</div>
+
+
+
+
+		</div>
+
+	</ion-content>
+	<div id="gwc-footer" class="clearfix gwc-footer"  ng-show="hasCartLists">
+		<div class="fl gwc-footer-left"  ng-click="allCheck()">
+			<div class="fl gwc-footer-left-l">
+				<span class="ospan" ng-class="{true:'active',false:''}[allCheckType]"></span>
+			</div>
+			<span class="fl">&nbsp&nbsp全选</span>
+
+			<div class="fl gwc-footer-left-r">
+				合计:<span>￥{{sum}}</span>
+			</div>
+		</div>
+		<div class="fr gwc-footer-right" ng-click="cast()" ng-class="{true:'h-red',false:''}[canCast]">
+			<a href="javascript:;">
+				<p>
+					<a href="#">结算</a>
+				</p>
+			</a>
+		</div>
+	</div>
+</ion-view>

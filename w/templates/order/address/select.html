@@ -1,0 +1,32 @@
+<ion-view view-title="收货地址" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<div class="h-page">
+			<div class="h-address" ng-click="addAddress()">
+				<p class="clearfix">
+					<span class="c-re"><b>+</b>&nbsp添加新地址</span>
+				</p>
+			</div>
+			<ul class="h-order-Parent">
+				<li ng-repeat="address in addressList">
+					<div class="clearfix h-order-address-new-box">
+						<div class="h-order-address fl h-order-address-new"  ng-click="selectAddress({{address.user_addrid}})">
+							<div class="fl">
+								<i></i>
+							</div>
+							<div class="fl">
+								<p>{{address.name}}:<span> {{address.mobile}}</span></p>
+								<p><span>{{address.province}}{{address.city}}{{address.district}}{{address.address}}</span></p>
+							</div>
+						</div>
+						<div class="fr h-order-address-right" ng-click="editAddress({{address.user_addrid}})">
+							<a href="#" class="clearfix">
+								<img src="../css/images/modify.png" alt="" width="20" class="fl">
+								<span class="fl osp">编辑</span>
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+</ion-view>

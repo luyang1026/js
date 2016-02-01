@@ -1,0 +1,27 @@
+<ion-view view-title="全球喵喵" hide-tabs="false" deactivate='false' cache-view="false">
+	<div id="header" >
+		<!--<a href="javascript:;" class="left " id="btn"></a>-->
+		<div class="right fl">
+			<div id="header-soso" class="clearfix header-soso">
+				<div class="so fl">
+					<i class="fl"></i>
+					<input type="text" class="fl" ng-model="keyword">
+				</div>
+				<div>
+					
+				<a  href="javascript:;"class="fl cancel" ng-click="search()">搜索</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ion-content>
+		<div class="records" ng-show="hasRecords">
+			<p class="ls">历史记录</p>
+			<ul class="ls-list" ng-if="records" >
+				<a href="app/search/{{record}}" ng-repeat="record in records track by $index"><li>{{record}}</li></a>
+			</ul>
+			<div class="clear" ng-click="clearRecords()">清除历史搜索</div>
+		</div>
+	</ion-content>
+
+</ion-view>

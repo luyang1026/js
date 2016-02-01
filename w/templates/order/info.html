@@ -1,0 +1,83 @@
+<ion-view view-title="确认订单" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<div class="h-page">
+			<div class="h-address h-sr-address" ng-if="!address" ng-click="chooseAddress()">
+				<p class="clearfix">
+					<!--<i class="fl">+</i>-->
+					<b class="fl address-ico"></b>
+					<span class="fl">请填写收货人地址</span>
+					<b class="fr address-rs"></b>
+				</p>
+			</div>
+			<!-- 有默认收货地址显示-->
+			<div class="h-order-address clearfix" ng-if="address" ng-click="chooseAddress()">
+	            <div class="fl">
+	                <i></i>
+	            </div>
+	            <div class="fl">
+	                <p>收件人:<span>{{address.name}}</span><span class="h-address-tel">{{address.mobile}}</span></p>
+	                <p>收货地址:<span>{{address.province}}{{address.city}}{{address.district}}{{address.address}}</span></p>
+	            </div>
+        	</div>
+			<!-- 有默认收货地址显示-->
+
+			<div class="h-qr-box">
+				<ul id="main-gwc">
+					<li class="clearfix" ng-repeat="produce in orderInfo.produces">
+						<div class="fl main-gwc-r h-order-new">
+							<div class="clearfix main-gwc-r-t">
+								<img src="{{produce.image}}" alt="" class="fl"width="90" height="90">
+								<div class="fr main-gwc-r-b">
+									<p>{{produce.name}}</p>
+									<p class="clearfix p2"><span class="fl ss">￥{{produce.sell_price / 100}}</span><span class="fr" ng-if="from == 1">x{{produce.num}}</span></p>
+									<div class="count" ng-if="from == 2">
+										<a href="javascript:;" class="a2" ng-click="reduce()">-</a>
+										<a href="javascript:;" class="a3" ng-click="plus()">+</a>
+										<span class="plus">{{produce.num}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+			<div class="tj-coupon">
+				<p class="clearfix">
+					<span class="fl">优惠券</span>
+					<a ng-click="getCoupon()">
+						<span class="fr" ng-class="{black:!couponAvailable}">{{couponAvailable?'有可用':'不可用'}}<i class="fr"></i></span>
+					</a>
+				</p>
+				<p class="clearfix">
+					<span class="fl">商品金额:</span>
+					<span class="fr">¥<b>{{orderInfo.total_money/100}}</b></span>
+				</p>
+				<p class="clearfix">
+					<span class="fl">商品优惠:</span>
+					<span class="fr">-¥<b>{{couponPrice/100}}</b></span>
+				</p>
+				<p class="clearfix">
+					<span class="fl">运费:</span>
+					<span class="fr">¥<b>{{express_fee?express_fee:'0'}}</b></span>
+				</p>
+			</div>
+
+		</div>
+	</ion-content>
+	<div class="clearfix h-gwc-footer">
+		<div class="fl gwc-footer-left">
+			<div class="fl gwc-footer-left-r">
+				合计:<span>￥{{orderInfo.total_money - couponPrice>0?(orderInfo.total_money - couponPrice)/100:'0' }}</span>
+			</div>
+		</div>
+		<div class="fr gwc-footer-right gwc-footer-color">
+			<a href="javascript:;">
+				<p ng-click="createOrder()">
+					提交订单
+				</p>
+			</a>
+		</div>
+	</div>
+</ion-view>

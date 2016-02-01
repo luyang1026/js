@@ -1,0 +1,55 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='true' cache-view="false">
+	<ion-content>
+		<!--申请售后-->
+		<div class="h-page ">
+		<form name="serviceForm">
+			<div class="h-app-sale">
+				<p class="clearfix h-app-sale-p">
+					<span class="fl">申请服务</span>
+					<select mobi-select='true' name="service" ng-model="serviceData.service">
+					        <option value="退款" ng-if="status == 801 || status == 802">退款</option>
+					        <option value="退货" ng-if="status == 802 || status == 803">退货</option>
+					</select>
+				</p>
+				<p class="clearfix h-app-sale-p">
+					<span class="fl">退款原因</span>
+					<select mobi-select='true' name="reason" ng-model="serviceData.reason">
+							<option value=""></option>
+					        <option value="缺货">缺货</option>
+					        <option value="七天无理由退货">七天无理由退货</option>
+					</select>
+				</p>
+				<p class="clearfix h-app-sale-p">
+					<span class="fl">预计退款</span>
+					<input type="text" placeholder="{{refund_money / 100}}" disabled>
+				</p>
+				<p class="clearfix h-app-sale-p">
+					<span class="fl">退款说明</span>
+					<input type="text" placeholder="最多200字" name="remark" ng-model="serviceData.remark">
+				</p>
+			</div>
+			<div ng-if="serviceData.service" class="h-app-sale-file clearfix">
+				<a href="#" class="fl">
+					<div class="h-file-plus">
+						<img src="../css/images/plus.png" alt="">
+						<p>上传凭证(最多3张)</p>
+						<iframe id="uploadIframe" class="uploadIframe left" frameborder="no" border="no" scrolling="no" src="http://file.miaomiao.com/xmjimg.php"></iframe>
+					</div>
+				</a>
+				<div id="img_box">
+					
+				</div>
+				<input type="hidden" id="upload_json" />
+			</div>
+			<div class="h-app-sale-footer ">
+				<div class="clearfix h-app-sale-footer-box">
+					<a href="#" class="fl" ng-click="apply()">提交申请</a>
+					<a href="#" class="fr">取消</a>
+				</div>
+			</div>
+		</form>
+		</div>
+
+
+	</ion-content>
+</ion-view>

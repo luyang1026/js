@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin-bottom: 5px;
+		}
+	</style>
+	<script src="jquery.js"></script>
+	<script>
+	window.onload = function(){
+		button.onclick = function(){
+			var oDiv = document.createElement('div');
+			oDiv.className = 'div1';
+			document.body.appendChild(oDiv);
+		}
+		$('p').on('click',function(){alert(1)})
+		$('body').on('click','.div1',function(){
+			console.log($(this))
+		})
+	}
+	</script>
+</head>
+<body>
+	<div>
+		
+	<input type="button" id="button">
+	<p>aaa</p>
+	</div>
+</body>
+</html>

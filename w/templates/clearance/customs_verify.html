@@ -1,0 +1,29 @@
+<ion-view view-title="全球喵喵" hide-tabs="true" deactivate='' cache-view="">
+
+    <ion-content>
+        <!-- 上传-->
+        <div class="h-page">
+            <div class="h-rz-text">
+                <p>
+                    <span>提示</span>
+                    据中华人民共和国海关总署规定：个人物品类进出
+                    境快件报关时，应向海关提交收件人身份证件影印件。
+                </p>
+                <p>清关认证完成后,喵喵才能完成通关为您派送哦!</p>
+            </div>
+            <form id="clearance" ng-submit="validate(data)" ng-init="data={}">
+                <div class="h-chr">
+                    <p>
+                        收货人:&nbsp&nbsp&nbsp&nbsp<input type="text" ng-init="data.name=''" ng-model="data.name" placeholder="请输入收货人" maxlength="50">
+                    </p>
+                    <p >
+                        身份证号:&nbsp<input type="text" ng-init="data.id=''" ng-model="data.id" placeholder="请输入身份证号">
+                    </p>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+    <div id="shdz-footer-detail" >
+        <input type="submit" value="提交" form="clearance">
+    </div>
+</ion-view>

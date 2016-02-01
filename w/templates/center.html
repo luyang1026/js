@@ -1,0 +1,70 @@
+<ion-view view-title="个人中心" hide-tabs="false" deactivate='false' cache-view="false">
+	<ion-content>
+		<div class="h-page">
+			<div class="h-portrait" >
+				<img src="{{baseInfo.thumb || 'css/images/logo.jpg'}}" alt="" />
+				<p><font color="">{{baseInfo.name}}</font></p>
+			</div>
+			<!--<a href="/app/user/order/lists/0" ng-class="tab == 0 ? 'h-active' : ''">--><!--</a>-->
+			<div class="h-Order-list-over">
+				<div class="h-Order clearfix">
+					<i class="fl"></i>
+					<span class="fl order-l">我的订单</span>
+				</div>
+			</div>
+
+			<ul class="h-Order-list clearfix">
+					<li>
+						<a href="app/user/order/lists/0">
+							<i class="icon-full"></i>
+							<span>全部</span>
+						</a>
+					</li>
+					<li>
+						<a href="/app/user/order/lists/1">
+							<i class="icon-dfk"></i>
+							<span>待付款</span>
+						</a>
+					</li>
+					<li>
+						<a href="/app/user/order/lists/2">
+							<i class="icon-dsh"></i>
+							<span>待收货</span>
+						</a>
+					</li>
+					<li>
+						<a href="/app/user/order/lists/3">
+							<i class="icon-ywc"></i>
+							<span>已完成</span>
+						</a>
+					</li>
+				</ul>
+
+
+			<div class="h-cus">
+				<a href="/app/user/address/lists" >
+					<p class="">
+						<i class="fl"></i>
+						<span class="fl ">我的收货地址</span>
+						<b class="fr"></b>
+					</p >
+				</a>
+				<a href="/app/user/coupon/lists" >
+					<p class="h-border-b">
+						<i class="fl"></i>
+						<span class="fl ">我的优惠券</span>
+						<b class="fr"></b>
+					</p>
+				</a>
+				<!--<a href="/app/user/order/service" >
+					<p class="h-border-b">
+						<i class="fl"></i>
+						<span class="fl">我的售后</span>
+					</p>
+				</a>-->
+
+
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

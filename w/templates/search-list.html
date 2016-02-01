@@ -1,0 +1,54 @@
+<ion-view view-title="全球喵喵" hide-tabs="false" deactivate='true' cache-view="false">
+	<div id="header" >
+		<!--<a href="javascript:;" class="left " id="btn"></a>-->
+		<div class="right fl">
+			<div id="header-soso" class="clearfix header-soso">
+				<div class="so fl">
+					<i class="fl"></i>
+					<input type="text" class="fl" ng-model="keyword">
+				</div>
+				<div>
+					
+				<a  href="javascript:;"class="fl cancel" ng-click="search()">搜索</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<ul class="search-t-nav clearfix">
+		<li class="on">综合</li>
+		<li>销量</li>
+		<li>价格</li>
+		<li>筛选 <i></i></li>
+	</ul>-->
+	<ion-content>
+		<div class="h-page">
+			<div id="wares-list" class="wares-list-main" ng-show="hasProduces">
+				<ul id="ul-list" class="clearfix h-ul-list">
+					<li ng-repeat="produce in produces">
+						<a href="app/search/produce/{{produce.produce_id}}">
+							<img ng-src="{{produce.main_image}}" height="146">
+							<p class="list-font">{{produce.name}}</p>
+						</a>
+					</li>
+				</ul>
+				<!--<ul id="ul-list" class="clearfix h-ul-list">
+					<li ng-repeat="produce in produces" class="h-ul-spl">
+						<a href="app/search/produce/{{produce.produce_id}}">
+							<img ng-src="{{produce.main_image}}" height="146">
+							<p class="list-font">{{produce.name}}</p>
+							<p>¥148&#40 $111&#41</p>
+							<p>¥216</p>
+						</a>
+					</li>
+				</ul>-->
+				<ion-infinite-scroll immediate-check="false" on-infinite="loadMore()" distance="1%" ng-if="hasMoreData">
+				</ion-infinite-scroll>
+			</div>
+				<div class="h-cart-none" ng-hide="hasProduces">
+					<img src="css/images/zanwu.jpg" alt="" style="width:35%;">
+					<p style="color: #9a9a9a;">没有搜索结果</p>
+					<p style="color:#c0c0c0;">没有找到相关宝贝</p>
+				</div>
+		</div>
+	</ion-content>
+</ion-view>

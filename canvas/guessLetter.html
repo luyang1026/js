@@ -4,27 +4,109 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script>
+		/**
+		 * 游戏规则：用户输入一个字母，提示是a方向还是z方向，输入正确游戏结束
+		 */
 		window.addEventListener('load', eWinLoaded, false);
 		function eWinLoaded(){
-
+			app();
 		}
 		function app(){
 			if(!document.createElement('canvas').getContext)return;
 			var theCanvas = document.getElementById('canvasone');
 			var context = theCanvas.getContext('2d');
-			var guesses = 0;
+			var guesses = 0;//猜了多少次
 			var message = 'Guess the letter from a (lower) to z (higher)';
 			var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 			var today = new Date();
-			var letterToGuess = '';
-			
+			var letterToGuess = '';//待猜字母
+			var higherOrLower = '';//判断是高了还是低了 a低z高
+			var lettersGuessed;//已经猜过的
+			var gameOver = false;
+
+			initGame();
+			//初始化游戏
+			function initGame(){
+				var letterIndex = Math.floor(Math.random() * letters.length);
+				letterToGuess = letters[letterIndex];
+				guesses = 0;
+				letterGuessed = [];
+				gameOver = false;
+				window.addEventListener('keyup', eventKeyPressed,true);
+				var formElement = document.getElementById('createImageData');
+				formElement.addEventListener('click', createImageDataPressed, false);
+				drawSreen();
+			}
+			//键盘按下
+			function eventKeyPressed(ev){
+				var  letterPressed = String.fromCharCode(ev.keyCode);
+				letterPressed  = letterPressed.toLowerCase();
+				// console.log(letterPressed)
+				guesses++;
+				letterGuessed.push(letterPressed);
+				if(letterPressed == letterToGuess){
+					gameOver = true;
+				}else{
+					letterIndex = letters.indexOf(letterToGuess);
+					guessIndex = letters.indexOf(letterPressed);
+
+					if(guessIndex<0){
+						higherOrLower = '您输入的不是字母';
+					}else if(letterIndex > guessIndex){
+						higherOrLower = 'Lower';
+					}else if(letterIndex < guessIndex){
+						higherOrLower = 'Higher';
+					}
+
+				}
+
+				drawSreen();
+			}
+			//绘制画布
+			function drawSreen(){
+				if(!gameOver){
+					//背景
+					context.fillStyle = '#ffa';
+					context.fillRect(0,0,500,300);
+					//边框
+					context.strokeStyle = '#000';
+					context.strokeRect(5,5,490,290);
+					context.textBaseline = 'top';
+					//日期
+					context.font = '10px _sans';
+					context.fillStyle = '#000';
+					context.fillText(today,150,10);
+					//消息
+					context.font = '14px _sans';
+					context.fillStyle = '#f00';
+					context.fillText(message,125,30);
+					//猜测的次数
+					context.fillStyle = '#109910';
+					context.font = '16px _sans';
+					context.fillText('Guesses:'+guesses,215,50);
+					//显示higher或lower
+					context.fillStyle = '#000';
+					context.fillText('Higher or Lower:'+higherOrLower,150,125);
+					//猜过的的字母
+					context.fillStyle = '#f00';
+					context.fillText('Letters Guessed:'+letterGuessed.toString(),10,260);
+					if(gameOver){
+						context.font = '40px _sans';
+						context.fillText('You Got It',150,180)
+					}
+				}
+			}
+			//导出图像
+			function createImageDataPressed(){
+				window.open(theCanvas.toDataURL(),'canvasImage','left=0,top=0,width='+theCanvas.width+',height:'+theCanvas.height+',toolbar=0,resize=0,location=no');
+			}
 		}
 	</script>
 </head>
 <body>
-	<div>
-		<canvas id="canvasone"></canvas>
-		<from><input type="text"></from>
+	<div style="position:absolute;top:50px;left:50px;">
+		<canvas id="canvasone" width="500" height="300"></canvas>
+		<from><input type="button" value="Export Canvas Image" id="createImageData"></from>
 	</div>
 </body>
 </html>
