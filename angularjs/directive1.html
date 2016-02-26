@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script src="angular.min.js"></script>
 	<script>
 		angular.module('app',[])
-			.controller('c1',function($scope,$attrs){
-				console.log($attrs)
-				$scope.arr = [1,2,3,4]
+			.directive('myContent',function(){
+				return{
+					restrict:'E',
+					template:'<a href="">sff</a>'
+				}
 			})
 	</script>
 </head>
-<body>
-	<div ng-controller="c1">
-		<ul>
-			<li ng-repeat="item in arr">{{$first}}</li>
-		</ul>
-		<div ng-if="2==3"></div>
-	</div>
+<body ng-app="app">
+	<my-content></my-content>
 </body>
 </html>

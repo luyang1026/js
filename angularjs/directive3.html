@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		var a;
+		angular.module('app',[])
+			.run(function($rootScope){
+				$rootScope.ccc = 1;
+			})
+			.directive('myContent',function(){
+				return {
+					scope:{
+						ss:'@myData'
+					},
+					controller: function($scope){
+						console.log($scope.ss)
+					},
+					template:'{{ss}}'
+				}
+			})
+	</script>
+</head>
+<body ng-app="app">
+	<div>
+		<my-content my-data="luyang"><my-content style="background-color:#ff0;">
+		</my-content>
+	</div>
+
+	<div go="a">111</div>
+	<div go="b"></div>
+</body>
+</html>
