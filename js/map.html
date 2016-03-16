@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var obj = {};
+		var arr = ['luyang','sun','yi'];
+		var newarr = arr.map(function(curV,idx,array){
+			console.log(curV,idx,array);
+			this[curV] = idx;
+			return idx;
+		},obj);
+		console.log(newarr,obj)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

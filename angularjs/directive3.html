@@ -8,28 +8,32 @@
 		var a;
 		angular.module('app',[])
 			.run(function($rootScope){
-				$rootScope.ccc = 1;
+				$rootScope.ss = 1;
 			})
 			.directive('myContent',function(){
 				return {
 					scope:{
-						ss:'@myData'
+						ss:'=myData'
 					},
 					controller: function($scope){
 						console.log($scope.ss)
+						$scope.change = function(ss){
+							ss.name = 3;
+						}
 					},
-					template:'{{ss}}'
+					template:'{{ss}} <input type="button" ng-click="change(ss)" />'
 				}
+			})
+			.controller('ctrl1', function($scope){
+				$scope.ss = {name:2};
 			})
 	</script>
 </head>
 <body ng-app="app">
-	<div>
-		<my-content my-data="luyang"><my-content style="background-color:#ff0;">
+	<div ng-controller="ctrl1">
+	{{ss}}
+		<my-content my-data="ss"><my-content style="background-color:#ff0;">
 		</my-content>
 	</div>
-
-	<div go="a">111</div>
-	<div go="b"></div>
 </body>
 </html>

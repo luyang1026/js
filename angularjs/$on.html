@@ -6,34 +6,25 @@
 	<script src="angular.min.js"></script>
 	<script>
 		var m = angular.module('app',[])
-			.run(function($rootScope){
-				// $rootScope.count = 1
-			})
-			.controller('g', function($scope){
-				$scope.aaa=1;
-				$scope.$on('a',function(a){
-					console.log(a.currentScope.aaa)
+			.controller('main', ['$rootScope','$scope', function($rootScope,$scope){
+				$scope.$on('click',function(ev,b,c){
+					$scope.b = 1;
+					console.log(ev,b,c)
 				})
-			})
-			.controller('p', function($scope){
-				$scope.a = function(){
-					$scope.$emit('a')
+			}])
+			.controller('sub', ['$scope', function($scope){
+				$scope.click = function(){
+					this.$emit('click',$scope.username);
 				}
-			})
-			.controller('s', function($scope){
-					
-			});
+			}])
 	</script>
 </head>
 <body>
-	<div ng-controller="g">
-		{{count}}aa
-		<div ng-controller="p" ng-click="a()" ng-init="count=1">
-			{{count}}aa
-			<div ng-controller="s">
-				{{count}}aa
-			</div>
+	<div ng-controller="main">
+		<div ng-controller="sub">
+			username: <input type="text" ng-model="username">
+			<input type="button" ng-click="click()">
 		</div>
-	</div>
+	</div>		
 </body>
 </html>

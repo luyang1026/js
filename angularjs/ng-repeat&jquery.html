@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.js"></script>
+	<!-- <script src="jquery.js"></script> -->
+	<script>
+		angular.module('a',[])
+			// .directive(function(){
+			// 	return{
+
+			// 	}
+			// })
+			.controller('ctrl1', ['$scope', function($scope){
+				$scope.arr = [1,2,3,5,4];
+			}])
+		
+	</script>
+</head>
+<body ng-app="a">
+	<ul ng-controller="ctrl1">
+		<li ng-repeat="i in arr"></li>
+	</ul>
+</body>
+</html>
