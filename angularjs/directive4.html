@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="m1">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script>
+		angular.module('m1',[])
+			.directive('mine',function(){
+				return{
+					restrict:'E',
+					replace:true,
+					template:'<a href="">asdfasfd</a>'
+				}
+			})
+	</script>
+</head>
+<body>
+	<mine></mine>
+</body>
+</html>
