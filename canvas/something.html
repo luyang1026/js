@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{background-color: #ccc;}
+		body{margin: 0;}
+	</style>
+	<script>
+		function d2a(d){
+			return d*Math.PI/180;
+		}
+		function dis(x1,x2,y1,y2){
+			var a = x1 - x2;
+			var b = y1 - y2;
+			return Math.sqrt(a*a-b*b);
+		}
+		function clear(canvas){
+			var cxt = canvas.getContext('2d');
+			cxt.clearRect(0,0,canvas.width,canvas.height);
+		}
+		var cx=200,
+			cy=200,
+			r=100;
+		window.addEventListener('DOMContentLoaded', function(){
+			var c1 = document.getElementById('c1');
+			var cxt = c1.getContext('2d');
+			cxt.arc(cx,cy,r,0,d2a(360),false);
+			// cxt.closePath();
+			cxt.fill();
+			// cxt.stroke();
+			c1.onclick = function(ev){
+				var dis = dis(cx,ev.clientX,cy,ev.clientY);
+				if(dis>r){
+					clear();
+					
+				}
+			}
+		});
+	</script>
+</head>
+<body>
+	<canvas id="c1" width="500" height="300"></canvas>
+</body>
+</html>

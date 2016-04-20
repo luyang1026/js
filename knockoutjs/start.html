@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="ko.js"></script>
+	<script>
+		window.addEventListener('DOMContentLoaded', function(){
+			var viewModel = {
+				myname:ko.observable('luyang')
+			};
+			ko.applyBindings(viewModel);		
+			btn.onclick = function(){
+				var r = viewModel.myname('ning');
+				console.log(r)
+			}
+
+			var eles = document.getElementsByTagName('*');
+			for (var i = 0; i < eles.length; i++) {
+				var a;
+				if( a = eles[i].getAttribute('data-bind'))
+				{
+					console.log(a)
+				}
+			}
+
+
+			var myko = (function(global){
+				//iterate the DOM Elements
+				return{
+
+					applyBindings:function(){
+						// console.log(1)
+					}
+				}
+			})(window);
+			myko.applyBindings();
+		});
+	</script>
+</head>
+<body>
+	<div>my name is <span data-bind="text:myname"></span></div>
+	<button id="btn">btn</button>
+</body>
+</html>
