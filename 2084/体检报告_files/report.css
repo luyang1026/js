@@ -1,0 +1,153 @@
+*{
+	padding:0;
+	margin:0;
+	font-family: "SimSun" ;
+}
+html{
+	font-size: 62.5%;
+}
+/***************导航*/
+.sectiontyle{
+	overflow: auto;
+}
+.navbardiv{
+	color:#000;
+	width:95%;
+	margin:0 auto;
+	padding:10px 0;
+	border-bottom:2px solid #FF6600;
+	text-align: center;
+	background: #fff;
+}
+.table {border-top: 1px solid #ddd !important;;
+			border-left: 1px solid #ddd !important;;
+			border-collapse: separate !important;
+			*border-collapse: collapse !important;
+			}
+.table td,th{
+			border: 1px solid #ddd;
+			border-top-width: 0 !important;
+			border-left-width: 0 !important;
+			border-spacing: 0;
+		}
+.nav_title{
+	float:left;
+}
+.navbardiv_logo{
+	float: right;
+	color: #FF6600;
+	font-size:16px;
+}
+.nav_name_div{
+	display: inline-block;
+	@media screen and max-width: 467px {
+		float:left;
+	}
+}
+.nav_name{
+	clear:both;
+	margin-right:0px;
+}
+.contentColor{
+	color:#808080;
+}
+/*人员信息******************/
+.rep_title_s{
+	width:90%;
+	margin:0 auto;
+	text-align: center;
+}
+.rep_title{
+	display: block;
+	font-size:3em;
+	font-family: '楷体';
+}
+.rep_tit_en{
+	font-size:1.5em;
+}
+.rep_title_mes{
+	width:90%;
+	margin:0 auto;
+	text-align: left;
+	font-size:0.8em;
+}
+.borderStyle{
+	border-bottom:2px solid #808080;
+}
+.col-xs-6-ss{width:50%;*width:49%;width:49%\9;text-align:center;}
+/*尾部*******************/
+.section_01{
+	width:90%;
+	margin:10px auto;
+	border-top: 1px solid #808080;
+
+	padding:10px 1% 10px 1%;
+	color:#000;
+	font-size: 0.8em;
+}
+.section_02{
+	width:90%;
+	margin:0 auto;
+	text-align: left;
+	
+}
+/*体检结果*/
+.section_03{
+	width:90%;
+	margin:30px auto;
+	text-align: left;
+	padding:10px 0;
+	overflow: auto;
+}
+.border_click{
+	border-bottom:2px solid #FF6600;
+}
+.borderB{
+	display: block;
+	
+	width:80%;
+	cursor:pointer;
+	padding-bottom: 10px;
+	font-family: "楷体";
+	font-size: 1.2em;
+	margin:0 auto;
+}
+/***************/
+.checkItem,.checkItem1{
+	display: inline-block;
+	overflow: auto;
+}
+.checkItem{
+	float: left;
+}
+.checkItem1{
+	float: right;
+}
+ul.checkItem >li{
+	display: block;
+	font-size: 16px;
+	color:#336600;
+	float:left;
+	
+}
+ul.checkItem1 >li{
+	display: block;
+	font-size: 16px;
+	color:#336600;
+	float:right;
+	margin-right:20px;
+}
+
+.nameStype{
+	border-bottom:1px solid #808080;
+	text-align:center;
+	display:inline-block;
+	width:60px;
+}
+.section_04{
+	margin-top:30px;
+	display:none;
+}
+.table{width:99%;border:1px solid #eee;}
+.table td ,.table th{padding:10px;border-left:1px solid #eee;border-bottom:1px solid #eee;}
+.success th{background:#DFF0D8;}
