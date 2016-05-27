@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		Array.prototype.unique1 = function() {//弄个新数组，里面没有就扔进去
+			var arr = [];
+			for (var i = 0; i < this.length; i++) {//for一遍this，里面for了一遍arr
+				if(arr.indexOf(this[i])==-1){
+					arr.push(this[i])
+				}
+			}
+			return arr;
+		};
+		Array.prototype.unique2 = function() {//利用对象的自动去重功能去重
+			var obj = {},arr = [];
+			for (var i = 0; i < this.length; i++) {//多了个obj（hash表...）
+				if(!obj[this[i]]){
+					obj[this[i]]=true;
+					arr.push(this[i])
+				}
+			}
+			return arr;
+		};
+		Array.prototype.unique3 = function() {
+			var arr = [this[0]];
+			for (var i = 1; i < this.length; i++) {//两个for
+				if(this.indexOf(this[i])==i){//如果不相等说明i前面的位置有相同值了，跟unique1差不多
+					arr.push(this[i]);
+				}
+			}
+			return arr;
+		};
+		Array.prototype.unique4 = function() {
+			this.sort();//前排序，再比较相邻项
+			var arr = [this[0]];
+			console.log(this)
+			for (var i = 1; i < this.length; i++) {//一个排序，一个for
+				if(this[i]!=this[i-1]){
+					arr.push(this[i])
+				}
+			}
+			return arr;
+		};
+		var arr = [1,'1',23,11,44,231,11,22,22,11,11,11];
+		var r = arr.unique4();
+		console.log(r.toString())
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
