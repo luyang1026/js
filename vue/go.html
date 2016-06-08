@@ -3,8 +3,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		.div1{
+			width: 100px;
+			height: 100px;
+			background-color: #f00;
+		}
+	</style>
+	<script src="vue.js"></script>
 </head>
 <body>
-	
+	<div id="app">
+		<input type="checkbox" v-model="a">
+		<div class="div1" v-if="a"></div>
+	</div>
+	<script>
+		new Vue({
+			el:'#app',
+			data:{
+				a:true
+			},
+			created:function(){
+				console.log(1111)
+			}
+		})
+	</script>
 </body>
 </html>

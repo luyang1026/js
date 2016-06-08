@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+       angular.module('app',[])
+        .factory('trans',function(){
+            return{
+               uppercase : function(str){
+                return str.toUpperCase();
+               } 
+            }
+            
+        })
+        .controller('aaa',function($scope,trans){
+            $scope.a = trans.uppercase('safsd');
+        })
+    </script>
+</head>
+<body>
+    <div ng-controller="aaa">
+        {{a}}
+    </div>
+</body>
+</html>

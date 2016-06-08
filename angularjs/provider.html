@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+       angular.module('app',[])
+        .provider('trans',function(){
+            var a = 'private';
+            this.go = 'gogo';//可以在config里面修改
+            this.$get = function(){
+                return {
+                    go:this.go,//这里的this.go就是11行的this.go
+                    add_go:function(str){
+                        return str+this.go;
+                    }
+                }
+            }
+        })
+        .config(function(transProvider){
+            transProvider.go = 'gogogo1'
+        })
+        .controller('aaa',function($scope,trans){
+            $scope.a = trans.add_go(1);
+            trans.go =1;
+            $scope.b = trans.go;
+        })
+        .controller('bbb',function($scope,trans){
+            $scope.b = trans.go;
+        })
+    </script>
+</head>
+<body>
+    <div ng-controller="aaa">
+        {{a}} <br>
+        {{b}}
+    </div>
+    <div ng-controller="bbb">
+        {{b}}
+    </div>
+</body>
+</html>
