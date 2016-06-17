@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="m1">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.js"></script>
+	<script>
+		angular.module('m1',[])
+			.directive('mine',function(){
+				var ccc;
+				return{
+					restrict:'A',
+					transclude:true,
+					scope:{
+						// close:'&onClose'
+					},
+					template:'<div ng-click="close()">111</div>',
+					controller:function($scope){
+					},
+					link:function(scope,element){
+						scope.name = 111;
+					}
+				}
+			})
+			.controller('aaa',function($scope){
+				$scope.name = 'luyang222'
+				$scope.close = function(a){
+					console.log(a)
+				}
+			})
+	</script>
+</head>
+<body>
+	<div ng-controller="aaa">
+		<div mine on-close="close(1111)">123123{{name}}></div>
+	</div>
+</body>
+</html>

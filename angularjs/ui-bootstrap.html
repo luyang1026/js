@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ui.bootstrap.demo">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<script src="bower_components/angluar.js"></script>
+	<script src="bower_components/angular-animate.js"></script>
+	<script src="bower_components/angular-bootstrap.js"></script>
+	<script type="text/javascript">
+		angular.module('ui.bootstrap.demo', ['ngAnimate', 'ui.bootstrap']);
+		angular.module('ui.bootstrap.demo').controller('PaginationDemoCtrl', function ($scope, $log) {
+		  $scope.totalItems = 64;
+		  $scope.currentPage = 4;
+
+		  $scope.setPage = function (pageNo) {
+		    $scope.currentPage = pageNo;
+		  };
+
+		  $scope.pageChanged = function() {
+		    $log.log('Page changed to: ' + $scope.currentPage);
+		  };
+
+		  $scope.maxSize = 5;
+		  $scope.bigTotalItems = 175;
+		  $scope.bigCurrentPage = 1;
+		});
+	</script>
+</head>
+<body>
+   <div ng-controller="PaginationDemoCtrl">{{smallnumPages}}{{bigCurrentPage}}{{numPages}}
+       <h4>Default</h4>
+       <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+
+       <uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+
+       <uib-pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></uib-pagination>
+
+       <uib-pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></uib-pagination>
+
+       <pre>The selected page no: {{currentPage}}</pre>
+       <button type="button" class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
+
+       <hr />
+       <h4>Limit the maximum visible buttons</h4>
+       <h6><code>rotate</code> defaulted to <code>true</code>:</h6>
+       <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="3" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
+
+       <h6><code>rotate</code> defaulted to <code>true</code> and <code>force-ellipses</code> set to <code>true</code>:</h6>
+       <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></uib-pagination>
+
+       <h6><code>rotate</code> set to <code>false</code>:</h6>
+       <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
+
+       <h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> defaulted to <code>true</code>:</h6>
+       <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></uib-pagination>
+
+       <h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> set to <code>false</code>:</h6>
+       <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+
+       <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+
+   </div>
+</body>
+</html>

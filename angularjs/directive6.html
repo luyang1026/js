@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<script src="angular.js"></script>
+	<script>
+		angular.module('app',[])
+			.directive('myTabs',function factory(){
+				return {
+					restrict:"E",
+					transclude:true,
+					templateUrl:'templates/my-tabs.html',
+					controller:function($scope){
+						var panes = $scope.panes = [];
+						$scope.select = function(pane) {//这个是repeat的scope
+							angular.forEach(panes,function(pane){//这个是子指令的scope （和上面指向的是一个scope)
+								pane.selected = false;
+							})
+							pane.selected = true;
+						};
+						this.addPane = function(pane){
+							if(panes.length==0){
+								$scope.select(pane)
+							}
+							panes.push(pane);
+						}
+					}
+				}
+			})
+			.directive('myPane',function(){
+				return{
+					require:'^myTabs',
+					restrict:'E',
+					transclude:true,
+					scope:{
+						title:'@'
+					},
+					link:function(scope,element,attrs,tabCtrl){
+						tabCtrl.addPane(scope)//这里调用了父指令的api，把子指令scope暴露给父指令
+					},
+					template:'<div class="tab-pane" ng-show="selected" ng-transclude></div><p>title:{{selected}}</p>'
+				}
+			})
+			.controller('body',function($scope){
+				$scope.aa = 1;
+				$scope.close = function(){
+					console.log(111)
+				}
+			})
+	</script>
+</head>
+<body ng-controller="body">
+	<my-tabs>
+		<my-pane title="hello">
+			<h1>hello</h1>
+		</my-pane>
+		<my-pane title="hello2">
+			<h1>hello2</h1>
+		</my-pane>
+	</my-tabs>
+</body>
+</html>
