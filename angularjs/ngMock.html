@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appE2E">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.js"></script>
+	<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+	<script>
+		var users = [
+	{
+		"name":"ly",
+		"age":12
+	},
+	{
+		"name":"sun",
+		"age":32
+	},
+	{
+		"name":"yi",
+		"age":32
+	}
+];
+		angular.module('appE2E',['app','ngMockE2E'])
+			.run(function($httpBackend){
+				// console.log($httpBackend)
+				$httpBackend.whenGET('/users')
+					.respond(function(method,url,data){
+						console.log(method,url,data);
+						console.log(angular.fromJson(data))
+						return [200,users,{}]
+					})
+			})
+		angular.module('app',[])
+			.controller('ctrl',function($http,$scope){	
+				$http.get('/users',{
+					data:{
+						a:1
+					}
+				}).success(function(data){
+					console.log(data)
+					$scope.users = data;
+				});
+			})
+	</script>
+</head>
+<body ng-controller="ctrl">
+	<button ng-click="">click</button>
+	<ul>
+		<li ng-repeat="user in users">{{user.name}}</li>
+	</ul>
+</body>
+</html>

@@ -10,23 +10,35 @@
 				$scope.person = {
 					name:'ly'
 				}
+				$timeout(function(){
+					var a = {sex:false}
+					angular.extend($scope.person,a)
+				},1000)
+
 			}])
-			.controller('c2',['$scope','$rootScope',function($scope,$rootScope){
-				
-				$scope.hello = function(){
-					$scope.person.age = 123;
-					$rootScope.person = {
-						name:'aa'
+			.directive('ct',function(){
+				return {
+					require:'ngModel',
+					link:function(scope,element,attrs,ngModel){
+						// ngModel.$parsers.push(function(val){
+						// 	return val+'000'
+						// });
+						ngModel.$formatters.push(function(val){
+							return val+''
+						})
 					}
 				}
-			}])
+			})
+		
 	</script>
 </head>
 <body ng-app="app">
 	<div ng-controller="c1">
-		<div ng-controller="c2" ng-click="hello()">{{person}}</div>
-	{{person}}
+		<input type="text" ng-model="person.name" ct>{{person|json}}
+		<select name="" id="" ng-model="person.sex" ct>
+			<option value="false">male</option>
+			<option value="female">female</option>
+		</select>
 	</div>
-	{{person}}
 </body>
 </html>

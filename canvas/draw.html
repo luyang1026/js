@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+	<style>
+		body{background-color: #ccc;}
+		canvas{background-color: #fff;}
+	</style>
+</head>
+<body>
+
+<div id="container">
+	<canvas id="can">Your Browser does not support Canvas, please upgrade</canvas>
+</div>
+
+<script>
+function drawCircle(y){
+	ctx.beginPath();
+	ctx.arc(0, 12.5*y, 5, 0, Math.PI*2, false);
+	ctx.fill();
+}
+
+var canvas = document.getElementById('can');
+var ctx = canvas.getContext('2d');
+
+canvas.width = 800;
+canvas.height = 500;
+
+
+ctx.translate(75, 75);
+
+for (var j = 0; j < 6; j++) {
+	for (var i = 0; i < 6; i++) {
+		ctx.rotate(Math.PI*2/6);
+		drawCircle(j)
+		console.log(1)
+	}	
+}
+</script>
+</body>
+</html>

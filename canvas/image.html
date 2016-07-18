@@ -10,17 +10,10 @@
 <body>
 
 <div id="container">
-	<button id="hang">hanging</button>
 	<canvas id="can">Your Browser does not support Canvas, please upgrade</canvas>
 </div>
 
 <script>
-var btn = document.getElementById('hang');
-btn.onclick = function(){
-	ctx.clearRect(0,0,500,800)
-	ctx.textBaseline = 'alphabetic'
-	ctx.fillText('hello',0,100)
-}
 
 var canvas = document.getElementById('can');
 var ctx = canvas.getContext('2d');
@@ -28,14 +21,16 @@ var ctx = canvas.getContext('2d');
 canvas.width = 500;
 canvas.height = 300;
 
+var img = new Image()
+img.src = 'lop.jpg';
+img.onload = function(){
+	for (var i = 0; i < 5; i++) {
+		for (var j = 0; j < 4; j++) {
+			ctx.drawImage(img,i*100,j*100,100,100);
+		}
+	}
+}
 
-ctx.fillStyle = "#F88E8B";
-ctx.fillRect(1, 1, 92, 30);
-ctx.strokeRect(1.5, 1.5, 91, 29);
-ctx.fillStyle = "#fff";
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.fillText("亲自试一下", 46, 15);
 </script>
 </body>
 </html>
