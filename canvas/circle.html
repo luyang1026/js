@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+</head>
+<style>
+	body{background-color: #ccc;}
+	canvas{background-color: #fff;}
+</style>
+<body>
+
+<div id="container">
+	<canvas id="can">Your Browser does not support Canvas, please upgrade</canvas>
+</div>
+
+<script>
+(function(){
+
+var canvas = document.getElementById('can');
+var ctx = canvas.getContext('2d');
+
+canvas.width = 500;
+canvas.height = 300;
+
+ctx.translate(150, 150);
+function cicles(fromC){
+	for (var i = 1; i < 6; i++) {//多少层
+		ctx.save();
+		ctx.fillStyle = 'rgb('+51*i+','+(255-51*i)+',255)';
+		for (var j = 0; j < i*6; j++) {//每层多少个
+			ctx.rotate(Math.PI*2/(i*6));
+			ctx.beginPath();
+			ctx.arc(0, i*fromC, 5, 0, Math.PI*2, false);
+			ctx.fill();
+		}
+		ctx.restore();
+	}
+}
+var n = 0;
+var bounce = 'go';
+setInterval(function(){
+	console.log(bounce)
+	switch(bounce){
+		case 'go':
+			n++;
+		break;
+		case 'back':
+			n--;
+		break;
+	}
+	ctx.clearRect(-150, -150, 500, 300);
+	cicles(n)
+	if(n>120){
+		bounce = 'back'
+	}
+	if(n<0){
+		bounce = 'go'
+	}
+},30)
+
+
+}());
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+</head>
+<body>
+
+<div id="container">
+	<canvas id="can">Your Browser does not support Canvas, please upgrade</canvas>
+</div>
+
+<script>
+(function(){
+
+var canvas = document.getElementById('can');
+var ctx = canvas.getContext('2d');
+
+canvas.width = 300;
+canvas.height = 300;
+
+ctx.beginPath();
+ctx.moveTo(100, 100);
+ctx.lineTo(100, 200);
+ctx.closePath();
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(1,0);
+ctx.lineTo(1, 300);
+ctx.closePath();
+ctx.stroke();
+
+ctx.clearRect(0, 0, 300, 300);
+
+ctx.beginPath();
+ctx.stroke();
+}());
+</script>
+</body>
+</html>

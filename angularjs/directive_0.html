@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.js"></script>
+	<script>
+		var g ;
+		angular.module('app',[])
+			.controller('c',function($scope){
+				$scope.name = ['a','b','cs'];
+				$scope.fn = function(ar){
+					console.log(ar)
+				};
+				
+			})
+			.directive('mine',function(){
+				return {
+					scope:{
+						items:'=info'
+					},
+					// template:'<button ng-repeat="i in items">{{i}}</button>'
+					template:'<input type="text" ng-model="items"><button ng-click="items(111)">click</button>',
+					link:function(scope,element,attr){
+						
+					},
+					controller:function($scope){
+						
+					}
+				}
+			})
+	</script>
+</head>
+<body ng-controller="c">
+	<mine info="fn">
+	</mine>{{sex}}
+</body>
+</html>

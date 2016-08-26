@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.js"></script>
+	<script>
+		angular.module('app',[])
+			// .run(function($rootScope){
+			// 	$rootScope.count = 1;
+			// })
+			.run(function($q,$rootScope){
+				var q = $q.defer()
+				var pro = q.promise;
+				pro.then(function(d){
+					console.log(d)
+				},function(d){
+					console.log(d)
+				},function(){
+
+				})
+				pro.finally(function(d){
+					console.log(d)
+				})
+
+				var r = $rootScope;
+				r.resolve = function(){
+					q.resolve(1)
+				}
+				r.reject = function(){
+					q.reject(2)
+				}
+			})
+	</script>
+</head>
+<body>
+	<button ng-click="resolve()">resolve</button>
+	<button ng-click="reject()">reject</button>
+	<button ng-click="notify()">notify</button>
+</body>
+</html>

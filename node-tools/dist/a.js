@@ -1,0 +1,1 @@
+function fn(f,n){f.a=1,n=f.a}sdfasdf,fn();

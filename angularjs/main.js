@@ -1,10 +1,10 @@
-var m1 = angular.module('myapp',['mymodule']);
+var m1 = angular.module('my-app',['mymodule']);
 		m1.factory('service',function(){
 			return {
 				name:'ly'
 			}
 		});
-		m1.controller('aaa',['$scope','service',function($scope,service){
+		m1.controller('aaBb',['$scope','service',function($scope,service){
 			// $scope.a = 1;
 			$scope.arr = [1,3,4];
 			$scope.$watch('arr',function(){

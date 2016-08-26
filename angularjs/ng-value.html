@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.js"></script>
+	<script>
+		angular.module('app',[])
+			.controller('c',function($scope){
+				$scope.arr = ['a','b','c']
+			})
+	</script>
+</head>
+<body ng-controller="c">
+	<div ng-repeat="i in arr">
+		<input type="text" ng-value="i">
+	</div>
+	<select name="" id="">
+		<option ng-value="i" ng-repeat="i in arr">{{i}}</option>
+	</select>
+</body>
+</html>

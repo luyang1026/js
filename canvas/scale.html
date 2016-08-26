@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+</head>
+<body>
+
+<div id="container">
+	<canvas id="can">Your Browser does not support Canvas, please upgrade</canvas>
+</div>
+
+<script>
+(function(){
+
+var canvas = document.getElementById('can');
+var ctx = canvas.getContext('2d');
+
+canvas.width = 300;
+canvas.height = 300;
+
+ctx.save();
+ctx.scale(0.4, 0.4);
+ctx.arc(60, 60, 50, 0, Math.PI*2, false);
+ctx.stroke();
+ctx.restore();
+ctx.beginPath();
+ctx.arc(60, 60, 50, 0, Math.PI*2, false);
+ctx.stroke();
+
+
+	
+}());
+</script>
+</body>
+</html>

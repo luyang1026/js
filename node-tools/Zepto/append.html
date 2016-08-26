@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/soda" id="p">
+
+<p>{{a}}</p>
+</script>
+
+<div id="pp" style="width: 10px;"></div>
+
+
+<script type="text/javascript" src="sodaRender.js"></script>	
+<script type="text/javascript">
+var data = {
+  a: 1
+};
+var target = document.getElementById("pp");
+var result = sodaRender(document.getElementById("p").innerHTML, data);
+console.log(document.getElementById("p").innerHTML)
+//console.dir(result.innerHTML);
+
+target.appendChild(result);
+
+</script>
+</body>
+</html>
